@@ -6,6 +6,22 @@ Nave::Nave() {
 	coordenadas = vec3(0.0f, 0.0f, 0.0f);
 	//Establece el valort como una matriz identidad
 	transformaciones = mat4(1.0f);
+
+	Vertice v1 = {
+		vec4(0.0f, 0.1f, 0.0f, 1.0f),
+		vec4(1.0f, 0.0f, 0.0f, 1.0f)
+	};
+	Vertice v2 = {
+		vec4(-0.1f, -0.1f, 0.0f, 1.0f),
+		vec4(1.0f, 1.0f, 0.0f, 1.0f)
+	};
+	Vertice v3 = {
+		vec4(0.1f, -0.1f, 0.0f, 1.0f),
+		vec4(1.0f, 1.0f, 0.0f, 1.0f)
+	};
+	vertices.push_back(v1);
+	vertices.push_back(v2);
+	vertices.push_back(v3);
 }
 
 void Nave::rotar(Direccion direccion) {
@@ -18,9 +34,10 @@ void Nave::rotar(Direccion direccion) {
 }
 
 void Nave::avanzar() {
+	float anguloDesfasado = angulo + 90.0f;
 	vec3 traslacion = vec3(
-		cos(angulo * 3.14159 / 180.0f) * velocidad, //X 
-		sin(angulo * 3.14159 / 180.0f) * velocidad, //Y
+		cos(anguloDesfasado * 3.14159 / 180.0f) * velocidad, //X 
+		sin(anguloDesfasado * 3.14159 / 180.0f) * velocidad, //Y
 		0.0f
 	);
 	coordenadas += traslacion;
